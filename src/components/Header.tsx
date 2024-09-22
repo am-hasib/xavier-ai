@@ -17,18 +17,19 @@ export default function Header() {
   }, [session, status]);
   return (
     <div className="fixed top-0 w-full h-16 bg-black z-10 border-b border-gray-100/30 p-3 flex justify-between items-center">
-      <Link href="/" >
+      <Link href="/">
         <h2 className="font-bold text-xl md:text-2xl">XAVIER-AI</h2>
       </Link>
       <div className="__menu">
         {initalLoading && status === "loading" ? (
-          <LoaderCircle className="animate-spin"/>
+          <LoaderCircle className="animate-spin" />
         ) : !session ? (
           <Button onClick={() => signIn("google")}>Login</Button>
         ) : (
-          <Avatar >
+          <Avatar className="flex gap-5 group ">
             <AvatarImage src={session?.user?.image || ""} />
-            <AvatarFallback>CN</AvatarFallback>
+
+            <AvatarFallback>{session.user?.name}</AvatarFallback>
           </Avatar>
         )}
       </div>
