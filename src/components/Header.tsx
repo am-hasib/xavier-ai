@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar } from "./ui/avatar";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { LoaderCircle } from "lucide-react";
@@ -26,11 +26,17 @@ export default function Header() {
         ) : !session ? (
           <Button onClick={() => signIn("google")}>Login</Button>
         ) : (
-          <Avatar className="flex gap-5 group ">
-            <AvatarImage src={session?.user?.image || ""} />
-
-            <AvatarFallback>{session.user?.name}</AvatarFallback>
-          </Avatar>
+          <div className="flex justify-center items-center gap-3">
+            <Link href={"/profile"}>
+              <Avatar className="flex gap-5 group ">
+                <AvatarImage src={session?.user?.image || ""} />
+                <AvatarFallback>{session.user?.name}</AvatarFallback>
+              </Avatar>
+            </Link>
+            <Button variant={"destructive"} onClick={() => signOut()}>
+              Logout
+            </Button>
+          </div>
         )}
       </div>
     </div>
