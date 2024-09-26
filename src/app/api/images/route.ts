@@ -56,28 +56,7 @@ export async function GET() {
     where: {
       userId: session.user.id,
     },
+    orderBy: { createdAt: "desc" },
   });
   return NextResponse.json(posts);
-}
-
-export async function DELETE() {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  const user = await prisma.user.findUnique({
-    where: {
-      id: session.user.id,
-    },
-  });
-  if (!user) {
-    return NextResponse.json({ error: "No User Found" }, { status: 401 });
-  }
-  await prisma.post.deleteMany({
-    where: {
-      userId: session.user.id,
-    },
-  });
-
-  return NextResponse.json({ message: "All posts deleted successfully" });
 }
