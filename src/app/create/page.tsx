@@ -50,8 +50,8 @@ export default function Create() {
     }
   };
   return (
-    <div className="w-full h-dvh flex justify-start items-center pt-20 flex-col gap-5">
-      <div className="w-full  p-3">
+    <div className="w-full px-5 mx-auto h-dvh flex justify-start items-center pt-20 flex-col gap-5">
+      <div className="w-full p-3">
         <h1 className="text-center text-3xl text-white font-bold md:text-5xl p-5">
           CREATE
         </h1>
@@ -70,11 +70,11 @@ export default function Create() {
                 control={form.control}
                 name="prompt"
                 render={({ field }) => (
-                  <FormItem className=" min-w-[500px]">
-                    <FormControl className="min-w-[80%]">
+                  <FormItem className=" min-w-[80vw] md:w-full mx-auto">
+                    <FormControl>
                       <Input
                         placeholder="Type anything you want"
-                        className="w-full"
+                        className="w-full md:w-1/2 mx-auto"
                         {...field}
                       />
                     </FormControl>
@@ -95,7 +95,7 @@ export default function Create() {
         </div>
         <div className="__output flex-1 border bg-white/5 border-none outline-none p-5 text-white font-normal rounded-lg">
           {outputImage ? (
-            <Image src={outputImage} alt="" width={300} height={300} />
+            <Image src={outputImage} alt={""} width={300} height={300} />
           ) : (
             <div className="flex justify-center items-center">
               Enter Your Prompt To Generate The Image
